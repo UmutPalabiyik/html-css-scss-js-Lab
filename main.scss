@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap");
+
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #060c21;
+  font-family: "Poppins", sans-serif;
+
+  .container {
+    position: relative;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 0 40px;
+    left: 300px;
+
+    .box {
+      border: 1px solid #000;
+      position: relative;
+      height: 400px;
+      background: #060c21;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      $backgrounds: (
+          "card1": #ff0057,
+          "card2": #9dc04d,
+          "card3": #3c9465,
+          "card4": #443da8,
+
+      );
+
+      $count: 1;
+      @each $backgrounds, $i in $backgrounds{
+        &:nth-child(#{$count}):before{
+            background-color: $i;
+            $count: $count + 1;
+        }
+      }
+
+
+      &:before{
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: #fff;
+          transform: skew(2deg,2deg);
+          z-index: -1;
+      }
+
+      &:hover .content h2 {
+        top: -80px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      &:hover .content a {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .content {
+        position: relative;
+        padding: 20px;
+        transform: translateY(40px);
+
+        h2 {
+          position: absolute;
+          top: -40px;
+          right: 20px;
+          margin: 0;
+          padding: 0;
+          font-size: 10em;
+          color: rgba(255, 255, 255, 0.1);
+          transition: 0.5s;
+        }
+
+        h3 {
+          margin: 0 0 10px;
+          padding: 0;
+          font-size: 24px;
+          font-weight: 500;
+          color: #fff;
+        }
+
+        p {
+          margin: 0;
+          padding: 0;
+          color: #fff;
+          font-size: 16px;
+        }
+
+        a {
+          position: relative;
+          margin: 20px 0 0;
+          padding: 10px 20px;
+          text-decoration: none;
+          border: 1px solid #fff;
+          display: inline-block;
+          color: #fff;
+          transition: 0.5s;
+          transform: translateY(-40px);
+          opacity: 0;
+          visibility: hidden;
+
+          &:hover {
+              color: #000;
+              background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
